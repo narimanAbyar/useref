@@ -1,13 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React,{useState,useRef,useEffect} from "react";
+import HelloWorld from './HelloWorld'
 function App() {
+  const [name,setName]=useState("");
+
+  const nameHandler=(e)=>{
+    setName(e.target.value)
+  }
+  const inputRef=useRef()
+  
+  const focusHandler=()=>{
+    console.log(inputRef.current);
+    inputRef.current.focus()
+    
+  }
+  useEffect(()=>{
+    inputRef.current.focus()
+  },[])
   return (
-    <div>
-      <h1>hamine</h1>
-      <h2>git</h2>
-      <p>add kardan react b git</p>
-    </div>
+   <>
+    <input
+    type="text"
+    value={name}
+    onChange={nameHandler}
+    ref={inputRef}
+    />
+    <button 
+    type="button"
+    onClick={focusHandler}
+    >chlick</button>
+    <HelloWorld/>
+   </>
   );
 }
 
